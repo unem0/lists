@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" >
+  <link href='https://fonts.googleapis.com/css?family=Tajawal' rel='stylesheet'> 
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <title>UNEM</title>
+    <link rel="icon" href="https://yt3.ggpht.com/r6rWsOfes_ItSzOxIkoa-Ez1dYjsUYdjCR_lyy_4ILpJkL9bJ-9ljl6iBJR-Vw67Eejnra1M1w=s900-c-k-c0x00ffffff-no-rj" sizes="16x16" type="image/png">
+
+    <style type="text/css">
+      body {
+    font-family: "Tajawal";
+}
+    </style>
+  </head>
+  <body class="bg-light" dir="rtl">
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="nom"></h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <ul class="list-group">
+          <li class="list-group-item">الهاتف : <span id="phone"></span></li>
+          <li class="list-group-item">التخصص : <span id="sp"></span></li>
+        </ul>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">إغلاق</button>
+      </div>
+    </div>
+  </div>
+</div>
+  <div class="container mt-3">
+    <div class="text-center">
+      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR_L4FqgZ5bWv0nCyMgE8srnLxiY49MJhVauqm7qfYymFTe8CVhTfWh7qnMqwQyor-LANg&usqp=CAU" style="max-width: 7rem;border-radius: 30%;">
+      <h3 class="text-secondary mt-2">UNEM - ISCAE</h3>
+    </div>
+
+    <div class="card">
+  <div class="card-header" style="font-weight: 600;">
+    قائمة المنتسبين ISCAE
+    <span class="badge rounded-pill bg-warning text-dark i"></span>
+
+  </div>
+  <div class="card-body">
+
+   <table class="table table-striped table-hover">
+ <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col" class="text-warning">الإسم</th>
+
+      <th scope="col" class="text-danger">الهاتف</th>
+      <th scope="col" class="text-info">معلومات</th>
+    </tr>
+  </thead>
+  <tbody>
+
+  </tbody>
+  </table>
+  </div>
+</div>
+  </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script> 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script> 
+    <script type="text/javascript" src="data.js"></script>
+    <script type="text/javascript">
+      let i=0;
+      data.forEach(l=>{
+        // console.log(l["الإسم الكامل"])
+         i++;
+         $("tbody").html($("tbody").html()+`
+            <tr>
+              <th scope="row">${i}</th>
+              <td>${l["الإسم الكامل"].replace("/"," ")}</td>
+              <td class="text-success">
+                <a href="Tel:+222${l["رقم الهاتف"]}"><i class="fa-solid fa-phone"></i></a>
+                ${l["رقم الهاتف"]}
+              </td>
+              <td><button 
+              nom="${l["الإسم الكامل"].replace("/"," ")}"
+              phone="${l["رقم الهاتف"]}"
+              sp="${l['التخصص']}"
+              type="button" class="btn btn-primary m" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="fa-solid fa-circle-info"></i></button></td>
+            </tr>
+          `);
+            $(".i").text(i);
+
+      });
+      $(".m").click(function() {
+        $("#nom").text($(this).attr('nom'));
+        $("#phone").text($(this).attr('phone'));
+        $("#sp").text($(this).attr('sp'));
+      })
+    </script>
+  </body>
+</html>
